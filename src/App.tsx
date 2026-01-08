@@ -25,6 +25,7 @@ import { SettingsManager } from './components/Settings';
 import { BillingManager } from './components/Billing';
 import { ProfileManager } from './components/Profile';
 import { TreatmentManager, TreatmentFormPage, NurseDashboard } from './components/Treatments';
+import { ProspectusPage } from './components/Prospectus';
 
 // Create a client with error handling
 const queryClient = new QueryClient({
@@ -237,6 +238,9 @@ function Dashboard() {
             <NurseDashboard />
           </ErrorBoundary>
         );
+
+      case 'prospectus':
+        return <ProspectusPage />;
 
       default:
         return (
