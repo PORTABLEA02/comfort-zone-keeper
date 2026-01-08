@@ -20,6 +20,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import { AnimateOnScroll } from '../../hooks/useScrollAnimation';
 
 interface LandingPageProps {
   onLogin: () => void;
@@ -42,7 +43,7 @@ export function LandingPage({ onLogin }: LandingPageProps) {
     { 
       icon: Stethoscope, 
       title: 'Workflow Consultation', 
-      description: 'File d\'attente en temps réel, prise des constantes et attribution médecin.'
+      description: "File d'attente en temps réel, prise des constantes et attribution médecin."
     },
     { 
       icon: FileText, 
@@ -72,13 +73,13 @@ export function LandingPage({ onLogin }: LandingPageProps) {
     { 
       name: 'Dr. Aminata Diallo', 
       role: 'Médecin Généraliste',
-      content: 'CliniCare a révolutionné notre pratique. La gestion des rendez-vous et des dossiers patients n\'a jamais été aussi simple.',
+      content: "CliniCare a révolutionné notre pratique. La gestion des rendez-vous et des dossiers patients n'a jamais été aussi simple.",
       rating: 5
     },
     { 
       name: 'Marie Kouadio', 
       role: 'Secrétaire Médicale',
-      content: 'L\'interface est intuitive et le workflow de consultation nous fait gagner un temps précieux chaque jour.',
+      content: "L'interface est intuitive et le workflow de consultation nous fait gagner un temps précieux chaque jour.",
       rating: 5
     },
     { 
@@ -90,7 +91,7 @@ export function LandingPage({ onLogin }: LandingPageProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,91 +150,104 @@ export function LandingPage({ onLogin }: LandingPageProps) {
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
-              <Zap className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Solution complète de gestion clinique</span>
-            </div>
+            <AnimateOnScroll animation="fade-down" duration={500}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
+                <Zap className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Solution complète de gestion clinique</span>
+              </div>
+            </AnimateOnScroll>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Gérez votre clinique
-              <span className="block text-gradient-primary">en toute simplicité</span>
-            </h1>
+            <AnimateOnScroll animation="fade-up" delay={100}>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+                Gérez votre clinique
+                <span className="block text-gradient-primary">en toute simplicité</span>
+              </h1>
+            </AnimateOnScroll>
             
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
-              CliniCare centralise toutes vos opérations médicales : patients, rendez-vous, consultations, 
-              prescriptions et facturation. Une interface moderne adaptée aux professionnels de santé africains.
-            </p>
+            <AnimateOnScroll animation="fade-up" delay={200}>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
+                CliniCare centralise toutes vos opérations médicales : patients, rendez-vous, consultations, 
+                prescriptions et facturation. Une interface moderne adaptée aux professionnels de santé africains.
+              </p>
+            </AnimateOnScroll>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={onLogin}
-                className="w-full sm:w-auto px-8 py-4 btn-gradient rounded-xl text-lg font-semibold flex items-center justify-center gap-2 group"
-              >
-                Commencer maintenant
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <a
-                href="#features"
-                className="w-full sm:w-auto px-8 py-4 border-2 border-border rounded-xl text-lg font-semibold text-foreground hover:bg-muted/50 transition-colors flex items-center justify-center"
-              >
-                Découvrir les fonctionnalités
-              </a>
-            </div>
+            <AnimateOnScroll animation="scale" delay={300}>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button
+                  onClick={onLogin}
+                  className="w-full sm:w-auto px-8 py-4 btn-gradient rounded-xl text-lg font-semibold flex items-center justify-center gap-2 group"
+                >
+                  Commencer maintenant
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+                <a
+                  href="#features"
+                  className="w-full sm:w-auto px-8 py-4 border-2 border-border rounded-xl text-lg font-semibold text-foreground hover:bg-muted/50 transition-colors flex items-center justify-center"
+                >
+                  Découvrir les fonctionnalités
+                </a>
+              </div>
+            </AnimateOnScroll>
           </div>
 
           {/* Hero Visual */}
-          <div className="mt-16 relative">
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent rounded-3xl"></div>
-            <div className="bg-card border border-border rounded-3xl shadow-2xl overflow-hidden">
-              <div className="p-4 bg-muted/30 border-b border-border flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-error"></div>
-                <div className="w-3 h-3 rounded-full bg-warning"></div>
-                <div className="w-3 h-3 rounded-full bg-success"></div>
-                <span className="ml-4 text-sm text-muted-foreground">CliniCare Dashboard</span>
-              </div>
-              <div className="p-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-                {[
-                  { label: 'Patients', value: '1,234', color: 'bg-primary' },
-                  { label: 'RDV Aujourd\'hui', value: '28', color: 'bg-secondary' },
-                  { label: 'Consultations', value: '156', color: 'bg-accent' },
-                  { label: 'Revenus (FCFA)', value: '2.4M', color: 'bg-success' },
-                ].map((stat, index) => (
-                  <div key={index} className="text-center p-4 bg-muted/30 rounded-xl">
-                    <div className={`w-3 h-3 ${stat.color} rounded-full mx-auto mb-3`}></div>
-                    <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
-                  </div>
-                ))}
+          <AnimateOnScroll animation="fade-up" delay={400} className="mt-16">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent rounded-3xl"></div>
+              <div className="bg-card border border-border rounded-3xl shadow-2xl overflow-hidden">
+                <div className="p-4 bg-muted/30 border-b border-border flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-error"></div>
+                  <div className="w-3 h-3 rounded-full bg-warning"></div>
+                  <div className="w-3 h-3 rounded-full bg-success"></div>
+                  <span className="ml-4 text-sm text-muted-foreground">CliniCare Dashboard</span>
+                </div>
+                <div className="p-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+                  {[
+                    { label: 'Patients', value: '1,234', color: 'bg-primary' },
+                    { label: "RDV Aujourd'hui", value: '28', color: 'bg-secondary' },
+                    { label: 'Consultations', value: '156', color: 'bg-accent' },
+                    { label: 'Revenus (FCFA)', value: '2.4M', color: 'bg-success' },
+                  ].map((stat, index) => (
+                    <div key={index} className="text-center p-4 bg-muted/30 rounded-xl">
+                      <div className={`w-3 h-3 ${stat.color} rounded-full mx-auto mb-3`}></div>
+                      <div className="text-2xl font-bold text-foreground">{stat.value}</div>
+                      <div className="text-sm text-muted-foreground">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </AnimateOnScroll>
         </div>
       </section>
 
       {/* Features Section */}
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <AnimateOnScroll animation="fade-up" className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Tout ce dont vous avez besoin
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Une suite complète d'outils pour gérer efficacement votre établissement de santé
+              Une suite complète d outils pour gérer efficacement votre établissement de santé
             </p>
-          </div>
+          </AnimateOnScroll>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div 
-                key={index}
-                className="bg-card p-6 rounded-2xl border border-border hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              <AnimateOnScroll 
+                key={index} 
+                animation="fade-up" 
+                delay={index * 100}
               >
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-primary" />
+                <div className="bg-card p-6 rounded-2xl border border-border hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </div>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>
@@ -243,53 +257,59 @@ export function LandingPage({ onLogin }: LandingPageProps) {
       <section id="benefits" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-                Pourquoi choisir CliniCare ?
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Conçu spécifiquement pour les cliniques africaines, CliniCare combine puissance et simplicité 
-                pour vous permettre de vous concentrer sur l'essentiel : vos patients.
-              </p>
-              
-              <div className="grid sm:grid-cols-2 gap-6">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <benefit.icon className="h-5 w-5 text-accent" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-1">{benefit.title}</h4>
-                      <p className="text-sm text-muted-foreground">{benefit.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 p-8 rounded-3xl">
-              <div className="bg-card rounded-2xl p-6 shadow-lg">
-                <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-success" />
-                  Adapté à votre contexte
-                </h4>
-                <ul className="space-y-3">
-                  {[
-                    'Devise locale (FCFA) intégrée',
-                    'Interface entièrement en français',
-                    'Support Mobile Money (Orange, MTN, Wave)',
-                    'Fonctionne sur mobile et tablette',
-                    'Synchronisation temps réel',
-                    'Sauvegarde automatique des données'
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-center gap-3 text-muted-foreground">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      {item}
-                    </li>
+            <AnimateOnScroll animation="fade-right">
+              <div>
+                <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
+                  Pourquoi choisir CliniCare ?
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8">
+                  Conçu spécifiquement pour les cliniques africaines, CliniCare combine puissance et simplicité 
+                  pour vous permettre de vous concentrer sur l essentiel : vos patients.
+                </p>
+                
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {benefits.map((benefit, index) => (
+                    <AnimateOnScroll key={index} animation="fade-up" delay={index * 100}>
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <benefit.icon className="h-5 w-5 text-accent" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-foreground mb-1">{benefit.title}</h4>
+                          <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                        </div>
+                      </div>
+                    </AnimateOnScroll>
                   ))}
-                </ul>
+                </div>
               </div>
-            </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll animation="fade-left" delay={200}>
+              <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 p-8 rounded-3xl">
+                <div className="bg-card rounded-2xl p-6 shadow-lg">
+                  <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-success" />
+                    Adapté à votre contexte
+                  </h4>
+                  <ul className="space-y-3">
+                    {[
+                      'Devise locale (FCFA) intégrée',
+                      'Interface entièrement en français',
+                      'Support Mobile Money (Orange, MTN, Wave)',
+                      'Fonctionne sur mobile et tablette',
+                      'Synchronisation temps réel',
+                      'Sauvegarde automatique des données'
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-center gap-3 text-muted-foreground">
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </AnimateOnScroll>
           </div>
         </div>
       </section>
@@ -297,37 +317,40 @@ export function LandingPage({ onLogin }: LandingPageProps) {
       {/* Testimonials Section */}
       <section id="testimonials" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <AnimateOnScroll animation="fade-up" className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Ce que disent nos utilisateurs
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Des professionnels de santé nous font confiance au quotidien
             </p>
-          </div>
+          </AnimateOnScroll>
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div 
-                key={index}
-                className="bg-card p-6 rounded-2xl border border-border"
+              <AnimateOnScroll 
+                key={index} 
+                animation="scale" 
+                delay={index * 150}
               >
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-warning text-warning" />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-6 italic">"{testimonial.content}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-semibold">{testimonial.name.charAt(0)}</span>
+                <div className="bg-card p-6 rounded-2xl border border-border h-full">
+                  <div className="flex gap-1 mb-4">
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-warning text-warning" />
+                    ))}
                   </div>
-                  <div>
-                    <div className="font-semibold text-foreground">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                  <p className="text-muted-foreground mb-6 italic">&ldquo;{testimonial.content}&rdquo;</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <span className="text-primary font-semibold">{testimonial.name.charAt(0)}</span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground">{testimonial.name}</div>
+                      <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>
@@ -335,7 +358,7 @@ export function LandingPage({ onLogin }: LandingPageProps) {
 
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
+        <AnimateOnScroll animation="scale" className="max-w-4xl mx-auto text-center">
           <div className="bg-gradient-to-r from-primary to-secondary p-12 rounded-3xl text-white">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Prêt à transformer votre clinique ?
@@ -347,47 +370,41 @@ export function LandingPage({ onLogin }: LandingPageProps) {
               onClick={onLogin}
               className="px-8 py-4 bg-white text-primary rounded-xl text-lg font-semibold hover:bg-white/90 transition-colors inline-flex items-center gap-2 group"
             >
-              Accéder à l'application
+              Accéder à l application
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
-        </div>
+        </AnimateOnScroll>
       </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <AnimateOnScroll animation="fade-up" className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Contactez-nous
             </h2>
             <p className="text-lg text-muted-foreground">
               Une question ? Notre équipe est là pour vous aider.
             </p>
-          </div>
+          </AnimateOnScroll>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-            <div className="text-center p-6 bg-card rounded-2xl border border-border">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Phone className="h-6 w-6 text-primary" />
-              </div>
-              <h4 className="font-semibold text-foreground mb-2">Téléphone</h4>
-              <p className="text-muted-foreground">+225 07 XX XX XX XX</p>
-            </div>
-            <div className="text-center p-6 bg-card rounded-2xl border border-border">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Mail className="h-6 w-6 text-primary" />
-              </div>
-              <h4 className="font-semibold text-foreground mb-2">Email</h4>
-              <p className="text-muted-foreground">contact@clinicare.com</p>
-            </div>
-            <div className="text-center p-6 bg-card rounded-2xl border border-border">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <MapPin className="h-6 w-6 text-primary" />
-              </div>
-              <h4 className="font-semibold text-foreground mb-2">Adresse</h4>
-              <p className="text-muted-foreground">Abidjan, Côte d'Ivoire</p>
-            </div>
+            {[
+              { icon: Phone, title: 'Téléphone', value: '+225 07 XX XX XX XX' },
+              { icon: Mail, title: 'Email', value: 'contact@clinicare.com' },
+              { icon: MapPin, title: 'Adresse', value: "Abidjan, Côte d'Ivoire" },
+            ].map((contact, index) => (
+              <AnimateOnScroll key={index} animation="fade-up" delay={index * 100}>
+                <div className="text-center p-6 bg-card rounded-2xl border border-border">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <contact.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="font-semibold text-foreground mb-2">{contact.title}</h4>
+                  <p className="text-muted-foreground">{contact.value}</p>
+                </div>
+              </AnimateOnScroll>
+            ))}
           </div>
         </div>
       </section>
