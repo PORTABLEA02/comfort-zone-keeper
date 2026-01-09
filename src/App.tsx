@@ -6,7 +6,6 @@ import { Toaster } from 'sonner';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ErrorBoundary } from './components/UI/ErrorBoundary';
 import { LoginForm } from './components/Auth/LoginForm';
-import { LandingPage } from './components/Landing';
 import { useRouter } from './hooks/useRouter';
 import { Sidebar } from './components/Layout/Sidebar';
 import { Header } from './components/Layout/Header';
@@ -26,7 +25,6 @@ import { SettingsManager } from './components/Settings';
 import { BillingManager } from './components/Billing';
 import { ProfileManager } from './components/Profile';
 import { TreatmentManager, TreatmentFormPage, NurseDashboard } from './components/Treatments';
-import { ProspectusPage } from './components/Prospectus';
 
 // Create a client with error handling
 const queryClient = new QueryClient({
@@ -240,9 +238,6 @@ function Dashboard() {
           </ErrorBoundary>
         );
 
-      case 'prospectus':
-        return <ProspectusPage />;
-
       default:
         return (
           <div className="card-elevated rounded-2xl p-8 border border-border animate-slide-up">
@@ -273,7 +268,6 @@ function Dashboard() {
 
 function AppContent() {
   const { isAuthenticated, loading } = useAuth();
-  const [showLogin, setShowLogin] = useState(false);
   
   useEffect(() => {
     const handleOnline = () => {
@@ -285,13 +279,6 @@ function AppContent() {
 
     window.addEventListener('online', handleOnline);
     return () => window.removeEventListener('online', handleOnline);
-  }, [isAuthenticated]);
-
-  // Reset showLogin when user becomes authenticated
-  useEffect(() => {
-    if (isAuthenticated) {
-      setShowLogin(false);
-    }
   }, [isAuthenticated]);
 
   if (loading) {
@@ -310,10 +297,7 @@ function AppContent() {
   }
 
   if (!isAuthenticated) {
-    if (showLogin) {
-      return <LoginForm />;
-    }
-    return <LandingPage onLogin={() => setShowLogin(true)} />;
+    return <LoginForm />;
   }
 
   return <Dashboard />;
